@@ -9,10 +9,10 @@
 		
 		<form action="insert_site.php" method="post"  enctype="multipart/form-data">
 			
-			<table bgcolor="orange" width="500" border="2" cellpadding="2" align="center">
+			<table bgcolor="gray" width="500" border="2" cellpadding="2" align="center">
 				
 				<tr>
-					<td colspan="5" align="center"><h2>Inserting new website:</h2></td>
+					<td colspan="5" align="center"><h2>Insert a new website:</h2></td>
 				</tr>
 				
 				<tr>
@@ -56,17 +56,17 @@
 	mysql_connect("localhost","root","");
 	mysql_select_db("search");
 
-	if(isset($_POST['submit'])) {
+	if(isset($_POST['submit'])){
 		
 		$site_title = $_POST['site_title'];
 		$site_link = $_POST['site_link'];
 		$site_keywords = $_POST['site_keywords'];
 		$site_desc = $_POST['site_desc'];
-		$site_image = $_FILES['site_title']['name'];
-		$site_image_tmp = $_FILES['site_title']['tmp_name']; 
+		$site_image = $_FILES['site_image']['name'];
+		$site_image_tmp = $_FILES['site_image']['tmp_name'];
 		
 		
-		if($site_title=='' OR $site_link=='' OR $site_keywords=='' OR $site_desc=='') {
+		if($site_title=='' OR $site_link=='' OR $site_keywords=='' OR $site_desc==''){
 			
 			echo "<script>alert('Please fill all fields!')</script>";
 			
@@ -81,12 +81,12 @@
 		move_uploaded_file($site_image_tmp,"images/{$site_image}");
 	
 		
-		if(mysql_query($insert_query)) {
+		if(mysql_query($insert_query)){
 			
 			echo "<script>alert('Data inserted into table')</script>";
 			
+				}
 			}
-		}
 
 		}
 ?>
